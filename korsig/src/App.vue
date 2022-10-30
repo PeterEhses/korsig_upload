@@ -1,21 +1,48 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-  </nav>
   <router-view/>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: sans-serif;
+@import "the-new-css-reset/css/reset.css";
+@import url("https://use.typekit.net/hjc1xqc.css");
+
+body{
+  --color-dark: #1C2020;
+  --color-light: #C2C1B8;
+  color: var(--color-dark);
+  background-color: var(--color-dark);
+
+  font-size: 16px;
+  font-family: museo-sans, sans-serif;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #666;
+
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  /* assign vw and vh as variable in case we want to suppress rotation */
+  /* height is greater than width */
+--large-dim: 1vh;
+--small-dim: 1vw;
+}
+@media screen and (min-width: 100vh) {
+  /* width is greater than height */
+  body {
+    --large-dim: 1vw;
+    --small-dim: 1vh;
+  }
 }
 
 .button {
-  background: rgb(127, 243, 243);
+  background: var(--color-dark);
+  color: var(--color-light);
   cursor: pointer;
   width: auto;
   padding: .5em 2em;
@@ -23,45 +50,8 @@
   border-radius: 10em;
 }
 
-.uploadField{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch ;
-  max-width: 40em;
 
-  margin: auto;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-
-    &.router-link-exact-active {
-      color: #00F;
-    }
-  }
-}
-
-//////////////////////////// EDITOR //////////////////////////////
-
-@import "node_modules/vue-advanced-cropper/dist/theme.compact.scss";
-.preview-editor {
-  position: relative;
-  width: 33vw;
-  height: 33vw;
-  // padding-bottom: 160%;
-  .cropper {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    // height: 600px;
-    // width: 600px;
-    background: #ddd;
-  }
+.templightbg{
+  background-color: var(--color-light);
 }
 </style>

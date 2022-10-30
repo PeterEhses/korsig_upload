@@ -104,6 +104,31 @@ export default {
 </script>
 
 <style lang="scss">
- 
+.uploadField{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch ;
+  max-width: 40em;
+  margin: auto;
+}
 
+ //////////////////////////// EDITOR //////////////////////////////
+@import "node_modules/vue-advanced-cropper/dist/theme.compact.scss";
+.preview-editor {
+  position: relative;
+  width: 33vw;
+  height: 33vw;
+  // padding-bottom: 160%;
+  .cropper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    // height: 600px;
+    // width: 600px;
+    background: #ddd;
+  }
+}
 </style>

@@ -1,21 +1,27 @@
 <template>
   <div class="home">
-    <UploadField @imageloaded="uploadFile" :status="uploadStatus" />
-   <p>
+    <!-- <UploadField @imageloaded="uploadFile" :status="uploadStatus" /> -->
+   <!-- <p>
     Your UID is <code>{{this.$route.query.uid}}</code>
-   </p>
+   </p> -->
+   <BackgroundGraphic class="bg-art"/>
+   <div class="templightbg"><LineButton>Interaktive Experience Beginnen</LineButton></div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import UploadField from "@/components/UploadField.vue";
 import { useRoute } from 'vue-router';
 import { ref } from "vue";
+// import UploadField from "@/components/UploadField.vue";
+import BackgroundGraphic from '../components/BackgroundGraphic.vue';
+import LineButton from '@/components/LineButton.vue';
 export default {
   name: "HomeView",
   components: {
-    UploadField,
+    // UploadField,
+    BackgroundGraphic,
+    LineButton
   },
   setup() {
     const uploadStatus = ref("waiting for upload...");
@@ -63,3 +69,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.home{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+</style>
