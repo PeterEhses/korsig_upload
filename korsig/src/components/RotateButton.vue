@@ -8,7 +8,7 @@
     <rect id="Rectangle_10" data-name="Rectangle 10" width="20" height="20" transform="translate(64 303)" fill="#c2c1b8"/>
     <path id="Polygon_1" data-name="Polygon 1" d="M5,0l5,8H0Z" transform="translate(88 309) rotate(180)" fill="#1c2020"/>
   </g>
-  <text id="rotieren" transform="translate(30 67)" fill="#252b2b" font-size="1rem" font-family="MuseoSans-500, 'Museo Sans \35 00'" font-weight="500"><tspan x="-30" y="0">rotieren</tspan></text>
+  <text id="rotieren" transform="translate(30 67)" fill="#252b2b" font-size="16px" font-family="MuseoSans-500, 'Museo Sans \35 00'" font-weight="500"><tspan x="-30" y="0">rotieren</tspan></text>
 </svg>
 </template>
 
@@ -22,7 +22,7 @@ export default {
 .rotate-button{
     font-size: 16px;
     flex-shrink: 0;
-    height: 4.375rem;
+    height: 4.5rem;
     padding-right: 2rem;
 }
 </style>
