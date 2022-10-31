@@ -1,67 +1,29 @@
 <template>
-  <div>
-    <LineButton @click="sendEventImageSelect()">Bilddatei auswählen</LineButton>
-    <input
-      style="display: none"
-      ref="EventfileInput"
-      @change="onFileChanged"
-      type="file"
-      name="upload"
-      accept="image/*"
-    />
+  <div class="upload-buttons-wrapper">
+    <LineButton :ltr="true" @click="$emit('upload')">Bild absenden</LineButton>
+    <RotateButton @click="$emit('rotate')"/>
   </div>
 </template>
 
 <script>
 import LineButton from "@/components/LineButton.vue";
-import { ref, watch } from "vue";
+import RotateButton from "@/components/RotateButton.vue";
 export default {
-  components: {
+    components: {
     LineButton,
+    RotateButton
   },
-  emits: ["imageselected", "status"],
-    // eslint-disable-next-line
-  setup(props, context) {
-    const imageUrl = ref("");
-    const EventfileInput = ref(null);
-    const status = ref("");
-
-    const onFileChanged = (event) => {
-      status.value = "Bild lädt..."
-      const files = event.target.files;
-    //   const image = files[0];
-    //   console.log(image);
-      const filename = files[0].name;
-      if (filename.lastIndexOf(".") <= 0) {
-        status.value = "Keine Dateien ausgewählt!"
-        return alert("No files selected");
-      }
-      const fileReader = new FileReader();
-      fileReader.addEventListener("load", () => {
-        imageUrl.value = fileReader.result;
-        context.emit("imageselected", fileReader.result);
-        status.value = "Bitte warten..."
-        // context.emit("imageloaded", files[0]);
-      });
-      fileReader.readAsDataURL(files[0]);
-    };
-
-    watch(status, () => {
-      context.emit("status", status.value)
-    })
-
-    const sendEventImageSelect = () => {
-      EventfileInput.value.click();
-    };
-    return {
-      status,
-      imageUrl,
-      EventfileInput,
-      onFileChanged,
-      sendEventImageSelect,
-    };
-  },
-};
+  emits: [
+    'upload',
+    'rotate'
+  ]
+}
 </script>
 
-<style></style>
+<style lang="scss">
+.upload-buttons-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>

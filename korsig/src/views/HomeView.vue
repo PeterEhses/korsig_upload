@@ -12,7 +12,7 @@
           einem beziehungsweise zwei Fingern ziehen.
         </p>
       </div>
-      
+      <UploadImageButton @rotate='rotate(90)' @upload='rotate(90)'/>
     </div>
     <div class="imageload controls-section" :style="sectionStyles.select">
       <div class="info-section">
@@ -21,7 +21,7 @@
           beizutragen. Ihr Bild wird auf der Projektion erscheinen.
         </p>
       </div>
-      <UploadImageButton
+      <SelectImageButton
         @imageselected="imageSelected"
         @status="selectStatusChanged"
       />
@@ -64,6 +64,7 @@ import { ref, computed } from "vue";
 // import UploadField from "@/components/UploadField.vue";
 import BackgroundGraphic from "../components/BackgroundGraphic.vue";
 import ConsentBox from "@/components/ConsentBox.vue";
+import SelectImageButton from "@/components/SelectImageButton.vue";
 import UploadImageButton from "@/components/UploadImageButton.vue";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
@@ -73,6 +74,7 @@ export default {
     // UploadField,
     BackgroundGraphic,
     ConsentBox,
+    SelectImageButton,
     UploadImageButton,
     Cropper,
   },
@@ -109,6 +111,15 @@ export default {
       imageUrl.value = data;
       section.value = 2;
     };
+
+    //edit image logic
+    const cropArea = ref(null);
+    const rotate = (angle)  => {
+      if (cropArea.value){
+cropArea.value.rotate(angle)
+      }
+      
+    }
 
     // Upload file logic
 
@@ -169,6 +180,8 @@ export default {
       imageSelected,
       selectStatus,
       selectStatusChanged,
+      rotate,
+      cropArea
     };
   },
 };
@@ -223,6 +236,7 @@ export default {
 
 .cropper-wrapper {
   position: absolute;
+  overflow: hidden;
   width: 100vw;
   height: 100vw;
   left: 0;
