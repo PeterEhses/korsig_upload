@@ -31,6 +31,11 @@ body{
   /* height is greater than width */
 --large-dim: 1vh;
 --small-dim: 1vw;
+
+
+/* animation stuff */
+
+--easing-function: cubic-bezier(1.000, 0.025, 0.665, 1.010);
 }
 @media screen and (min-width: 100vh) {
   /* width is greater than height */
@@ -50,8 +55,7 @@ body{
   border-radius: 10em;
 }
 
-
-.templightbg{
-  background-color: var(--color-light);
+a{
+  text-decoration: underline;
 }
 </style>

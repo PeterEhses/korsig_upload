@@ -27,6 +27,7 @@ export default {};
 //////////////////////////// BG ART //////////////////////////////
 //preserveAspectRatio="none"
 .bg-wrapper {
+  flex-shrink: 1;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -43,6 +44,9 @@ export default {};
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
+
+    
+  background-color: var(--color-light);
   }
 }
 </style>
