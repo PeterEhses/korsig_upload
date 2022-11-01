@@ -4,7 +4,21 @@
     <!-- <p>
     Your UID is <code>{{this.$route.query.uid}}</code>
    </p> -->
-    <div class="upload-controls controls-section" v-if="imageUrl.value !=''">
+    <div class="sent-status controls-section">
+      <div class="upper-right-text status upload-status">
+        {{ uploadStatus }}
+      </div>
+      <div class="info-section">
+        <p class="upper-right-text" :style="sectionStyles.nextStepsHint">
+          Die interaktive Experience geht auf dem Touch Terminal weiter…
+        </p>
+      </div>
+    </div>
+    <div
+      class="upload-controls controls-section"
+      :style="sectionStyles.editorControls"
+      v-if="imageUrl.value != ''"
+    >
       <div class="info-section">
         <p class="upper-right-text">
           Rotieren Sie Ihr Bild nach Belieben, schienden Sie es zu und skalieren
@@ -12,7 +26,7 @@
           einem beziehungsweise zwei Fingern ziehen.
         </p>
       </div>
-      <UploadImageButton @rotate='rotate(90)' @upload='rotate(90)'/>
+      <UploadImageButton @rotate="rotate(90)" @upload="sendFileAndLock" />
     </div>
     <div class="imageload controls-section" :style="sectionStyles.select">
       <div class="info-section">
@@ -94,7 +108,14 @@ export default {
         },
         select: {
           opacity: imageUrl.value ? 0 : 1,
-          'pointer-events': imageUrl.value ? 'none' : 'inherit',
+          "pointer-events": imageUrl.value ? "none" : "inherit",
+          transition: "opacity 1000ms cubic-bezier(1.000, 0.025, 0.665, 1.010)",
+          "transition-timing-function":
+            "cubic-bezier(1.000, 0.025, 0.665, 1.010)",
+        },
+        editorControls: {
+          opacity: sentUpload.value ? 0 : 1,
+          "pointer-events": sentUpload.value ? "none" : "inherit",
           transition: "opacity 1000ms cubic-bezier(1.000, 0.025, 0.665, 1.010)",
           "transition-timing-function":
             "cubic-bezier(1.000, 0.025, 0.665, 1.010)",
@@ -102,6 +123,12 @@ export default {
         editor: {
           display: selectStatus.value != "" ? "inherit" : "none",
         },
+        nextStepsHint: {
+          opacity: uploadStatus.value === "Hochladen erfolgreich!" ? 1 : 0,
+          transition: "opacity 1000ms cubic-bezier(1.000, 0.025, 0.665, 1.010)",
+          "transition-timing-function":
+            "cubic-bezier(1.000, 0.025, 0.665, 1.010)",
+        }
       };
     });
 
@@ -114,23 +141,28 @@ export default {
 
     //edit image logic
     const cropArea = ref(null);
-    const rotate = (angle)  => {
-      if (cropArea.value){
-cropArea.value.rotate(angle)
+    const rotate = (angle) => {
+      if (cropArea.value) {
+        cropArea.value.rotate(angle);
       }
-      
-    }
-
+    };
+    const sendFileAndLock = () => {
+      const croppedImage = cropArea.value.getResult();
+      croppedImage.canvas.toBlob((blob) => {
+        uploadFile(blob);
+      });
+      sentUpload.value = true;
+    };
     // Upload file logic
 
     const sentUpload = ref(false);
 
-    const uploadStatus = ref("waiting for upload...");
+    const uploadStatus = ref("");
     const fetchResponse = ref({});
     const fetchError = ref({});
     const route = useRoute();
     const uploadFile = (data) => {
-      uploadStatus.value = "Uploading...";
+      uploadStatus.value = "Am hochladen...";
       let formData = new FormData();
 
       if (route.query && route.query.uid) {
@@ -145,9 +177,9 @@ cropArea.value.rotate(angle)
         function (response) {
           if (response.status != 204) {
             fetchError.value = response.status;
-            uploadStatus.value = "Error: " + String(fetchError.value);
+            uploadStatus.value = "Etwas ist schief gelaufen: " + String(fetchError.value);
           } else {
-            uploadStatus.value = "Upload successful";
+            uploadStatus.value = "Hochladen erfolgreich!";
             try {
               response.text().then(function (data) {
                 const json = data === "" ? {} : JSON.parse(data);
@@ -155,6 +187,7 @@ cropArea.value.rotate(angle)
               });
             } catch (err) {
               console.warn(err);
+              uploadStatus.value = "Etwas ist schief gelaufen: " + String(err);
             }
           }
         }.bind(this)
@@ -181,7 +214,8 @@ cropArea.value.rotate(angle)
       selectStatus,
       selectStatusChanged,
       rotate,
-      cropArea
+      cropArea,
+      sendFileAndLock,
     };
   },
 };
@@ -209,14 +243,17 @@ cropArea.value.rotate(angle)
   align-content: stretch;
   .info-section {
     flex-grow: 1;
-    .upper-right-text {
+  }
+  .upper-right-text {
       text-align: right;
-      padding: 2em;
+      padding: 2rem;
       padding-bottom: 0;
       max-width: 35ch;
       margin-left: auto;
+      &.status {
+        font-size: 2rem;
+      }
     }
-  }
 }
 .start-section {
   position: absolute;

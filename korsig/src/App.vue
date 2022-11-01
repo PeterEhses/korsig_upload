@@ -1,6 +1,17 @@
 <template>
   <router-view/>
+<WrongDeviceBlocker/>
 </template>
+
+<script>
+import WrongDeviceBlocker from "@/components/WrongDeviceBlocker.vue"
+export default {
+  components: {
+    WrongDeviceBlocker
+  }
+}
+</script>
+
 
 <style lang="scss">
 @import "the-new-css-reset/css/reset.css";
