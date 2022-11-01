@@ -101,6 +101,7 @@ export default {
     const sectionStyles = computed(() => {
       return {
         start: {
+          display: uploadStatus.value === "Hochladen erfolgreich!" ? "none" : "",
           top: "calc((100vh - 100vw) * " + (section.value > 0 ? 1 : 0) + " )",
           transition: "top 1000ms cubic-bezier(1.000, 0.025, 0.665, 1.010)",
           "transition-timing-function":
@@ -122,6 +123,10 @@ export default {
         },
         editor: {
           display: selectStatus.value != "" ? "inherit" : "none",
+          opacity: uploadStatus.value === "Hochladen erfolgreich!" ? 0 : 1,
+          transition: "opacity 1000ms cubic-bezier(1.000, 0.025, 0.665, 1.010)",
+          "transition-timing-function":
+            "cubic-bezier(1.000, 0.025, 0.665, 1.010)",
         },
         nextStepsHint: {
           opacity: uploadStatus.value === "Hochladen erfolgreich!" ? 1 : 0,

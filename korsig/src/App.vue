@@ -26,7 +26,7 @@ body{
   --color-dark: #1C2020;
   --color-light: #C2C1B8;
   color: var(--color-dark);
-  background-color: var(--color-dark);
+  background-color: var(--color-light);
 
 
   font-family: museo-sans, sans-serif;
