@@ -84,21 +84,21 @@ export default {
 <style lang="scss">
 .blocker {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   .wrongType {
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-content: stretch;
     .wrongTypeText {
-      min-height: 50vh;
+      min-height: 50%;
       padding: 2rem;
       background: var(--color-light);
       color: var(--color-dark);
@@ -110,8 +110,8 @@ export default {
   }
     .wrongRotationText{
         position: absolute;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
         padding: 2rem;
       background: var(--color-light);
       color: var(--color-dark);

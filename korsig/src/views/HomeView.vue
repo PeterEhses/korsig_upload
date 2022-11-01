@@ -102,7 +102,7 @@ export default {
       return {
         start: {
           display: uploadStatus.value === "Hochladen erfolgreich!" ? "none" : "",
-          top: "calc((100vh - 100vw) * " + (section.value > 0 ? 1 : 0) + " )",
+          top: "calc((100% - 100vw) * " + (section.value > 0 ? 1 : 0) + " )",
           transition: "top 1000ms cubic-bezier(1.000, 0.025, 0.665, 1.010)",
           "transition-timing-function":
             "cubic-bezier(1.000, 0.025, 0.665, 1.010)",
@@ -230,8 +230,8 @@ export default {
 // general
 
 .home {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 .controls-section {
@@ -240,8 +240,8 @@ export default {
   left: 0;
   right: 0;
   left: 0;
-  width: 100vw;
-  height: calc(100vh - 100vw);
+  width: 100%;
+  height: calc(100% - 100vw);
   background-color: var(--color-light);
   display: flex;
   flex-direction: column;
@@ -266,8 +266,8 @@ export default {
   left: 0;
   right: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }

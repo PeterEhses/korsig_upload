@@ -1,15 +1,15 @@
 <template>
-  <router-view/>
-<WrongDeviceBlocker/>
+  <router-view />
+  <WrongDeviceBlocker />
 </template>
 
 <script>
-import WrongDeviceBlocker from "@/components/WrongDeviceBlocker.vue"
+import WrongDeviceBlocker from "@/components/WrongDeviceBlocker.vue";
 export default {
   components: {
-    WrongDeviceBlocker
-  }
-}
+    WrongDeviceBlocker,
+  },
+};
 </script>
 
 
@@ -17,17 +17,15 @@ export default {
 @import "the-new-css-reset/css/reset.css";
 @import url("https://use.typekit.net/hjc1xqc.css");
 
-html{
+html {
   font-size: 16px;
 }
 
-body{
-
-  --color-dark: #1C2020;
-  --color-light: #C2C1B8;
+body {
+  --color-dark: #1c2020;
+  --color-light: #c2c1b8;
   color: var(--color-dark);
   background-color: var(--color-light);
-
 
   font-family: museo-sans, sans-serif;
   font-weight: 500;
@@ -46,26 +44,29 @@ body{
   overflow: hidden;
   /* assign vw and vh as variable in case we want to suppress rotation */
   /* height is greater than width */
---large-dim: 1vh;
---small-dim: 1vw;
+  --large-dim: 1vh;
+  --small-dim: 1vw;
 
+  /* animation stuff */
 
-/* animation stuff */
+  --easing-function: cubic-bezier(1, 0.025, 0.665, 1.01);
+}
 
---easing-function: cubic-bezier(1.000, 0.025, 0.665, 1.010);
+#app{
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-height: 666px) {
-  html{
+  html {
     font-size: 12px;
-  }  
+  }
 }
 // @media screen and (max-height: 630px) {
 //   html{
 //     font-size: 10px;
-//   }  
+//   }
 // }
-
 
 @media screen and (min-width: 100vh) {
   /* width is greater than height */
@@ -80,12 +81,12 @@ body{
   color: var(--color-light);
   cursor: pointer;
   width: auto;
-  padding: .5em 2em;
-  margin: .5rem;
+  padding: 0.5em 2em;
+  margin: 0.5rem;
   border-radius: 10em;
 }
 
-a{
+a {
   text-decoration: underline;
 }
 </style>
