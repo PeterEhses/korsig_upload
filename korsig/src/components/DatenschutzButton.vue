@@ -65,6 +65,7 @@ export default {
     position: relative;
     height: calc(100% - 3em);
     flex-shrink: 0;
+    flex-grow: 0;
     margin: 1.5em;
     background-color: var(--color-light);
     color: var(--color-dark);
@@ -74,9 +75,13 @@ export default {
       display: block;
       height: 100%;
       width: auto;
+      opacity: 0;
+      pointer-events: none;
     }
     .ja-inner {
       position: absolute;
+      width: 100%;
+      height: 100%;
       left: 0;
       right: 0;
       top: 0;

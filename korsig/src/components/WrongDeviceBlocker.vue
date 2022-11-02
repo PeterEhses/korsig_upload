@@ -57,7 +57,7 @@ export default {
         return(windowWidth.value/windowHeight.value)
     })
     const wrongAspect = computed(()=>{
-        return(aspect.value > (3/4))
+        return(aspect.value > (3/3.5))
     })
 
     // add some fresh styles
