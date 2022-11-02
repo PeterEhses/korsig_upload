@@ -6,7 +6,9 @@
         <a @click="toggleLegalText">Verwendung meines Bildes</a>."
       </p>
     </div>
-    <div class="ja">
+    <div class="ja" ref="JaBox" :style="{
+      width: JaWidth+'px'
+    }">
       <img
         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       />
@@ -20,6 +22,7 @@
 </template>
 
 <script>
+import { ref, onMounted, onUnmounted } from "vue";
 import LegalText from "@/components/LegalText.vue"
 export default {
     components: {
@@ -40,6 +43,26 @@ export default {
       this.legalVisible = !this.legalVisible;
     },
   },
+  setup(){
+    const JaBox = ref(null);
+    const JaWidth = ref(null);
+ const JaHeight = ref(null);
+ 
+    const onWidthChange = () => {
+      JaWidth.value = JaBox.value.clientHeight
+      JaHeight.value = JaBox.value.clientHeight
+    };
+    onMounted(() => {
+      window.addEventListener("resize", onWidthChange)
+      onWidthChange()
+    });
+    onUnmounted(() => window.removeEventListener("resize", onWidthChange));
+    return{
+      JaWidth,
+      JaHeight,
+      JaBox
+    }
+  }
 };
 </script>
 
