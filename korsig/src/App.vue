@@ -1,14 +1,22 @@
 <template>
-  <router-view />
-  <WrongDeviceBlocker />
+  <router-view v-if='!over'/>
+  <WrongDeviceBlocker v-if='!over'/>
+  <OverMessage v-if='over'/>
 </template>
 
 <script>
 import WrongDeviceBlocker from "@/components/WrongDeviceBlocker.vue";
+import OverMessage from '@/components/OverMessage.vue'
 export default {
   components: {
     WrongDeviceBlocker,
+    OverMessage
   },
+  data(){
+    return{
+      over: true
+    }
+  }
 };
 </script>
 
@@ -88,5 +96,13 @@ body {
 
 a {
   text-decoration: underline;
+}
+
+.over-message{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

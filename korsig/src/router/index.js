@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
+// eslint-disable-next-line
 import HomeView from '../views/HomeView.vue'
+// import OverView from '../views/OverView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView //HomeView
   },
   // {
   //   path: '/about',
